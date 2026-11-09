@@ -1,0 +1,9 @@
+gcloud eventarc triggers create beast3-firestore-intake-trigger \
+  --location=us-central1 \
+  --destination-run-service=beast3-division-event-router \
+  --destination-run-region=us-central1 \
+  --destination-run-path="/events/route" \
+  --event-filters="type=google.cloud.firestore.document.v1.created" \
+  --event-filters="database=(default)" \
+  --event-filters-path-pattern="document=beast_intake_queue/{docId}" \
+  --service-account="YOUR_PROJECT_NUMBER-compute@developer.gserviceaccount.com"
